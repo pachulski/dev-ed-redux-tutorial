@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// import { createStore } from 'redux';
+import { createStore } from 'redux';
+import allReducers from './reducers';
+import { Provider } from 'react-redux';
 
 // // ACTION - Describes what you want to do. Function that returns an object with an action name (type)
 // const increment = () => {
@@ -25,11 +27,14 @@ import reportWebVitals from './reportWebVitals';
 //       return state + 1;
 //     case 'DECREMENT':
 //       return state - 1;
+//     default:
+//       return state;
 //   }
 // };
 
 // // STORE -> GLOBALIZED STATE
 // const store = createStore(counter);
+const store = createStore(allReducers);
 
 // // Display it in the console
 // store.subscribe(() => console.log(store.getState()));
@@ -39,7 +44,9 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
